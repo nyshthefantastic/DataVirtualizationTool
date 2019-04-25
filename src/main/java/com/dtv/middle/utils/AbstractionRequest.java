@@ -2,17 +2,17 @@ package com.dtv.middle.utils;
 
 import java.util.List;
 
-public class AbstractionRequest<E> {
+public class AbstractionRequest{
 
 	int projectId;
 	int queryId;
 	String chartType;
-	List<E> data;
+	List<Object> data;
 
 	public AbstractionRequest() {
 	}
 
-	public AbstractionRequest(int projectId, int queryId, String chartType, List<E> data) {
+	public AbstractionRequest(int projectId, int queryId, String chartType, List<Object> data) {
 		super();
 		this.projectId = projectId;
 		this.queryId = queryId;
@@ -44,11 +44,11 @@ public class AbstractionRequest<E> {
 		this.chartType = chartType;
 	}
 
-	public List<E> getData() {
+	public List<Object> getData() {
 		return data;
 	}
 
-	public void setData(List<E> data) {
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
 
