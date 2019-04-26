@@ -2,18 +2,22 @@ package com.dtv.middle.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dtv.middle.resources.ReturnFormat;
+import com.dtv.middle.services.AbstractionRetrieveService;
 import com.dtv.middle.services.AbstractionService;
 import com.dtv.middle.services.GuiService;
 import com.dtv.middle.utils.AbstractionDeleteRequest;
 import com.dtv.middle.utils.AbstractionRequest;
+import com.dtv.middle.utils.AbstractionRetrieveRequest;
 import com.dtv.middle.utils.AbstractionUpdateRequest;
 import com.dtv.middle.utils.DashboardRequest;
 
@@ -22,7 +26,8 @@ import com.dtv.middle.utils.DashboardRequest;
 public class AbstractionController {
 	@Autowired
 	AbstractionService abstrationSer;
-	
+	@Autowired
+	AbstractionRetrieveService abstrationRetSer;
 	@RequestMapping(method = RequestMethod.POST, value = "/saveQueries")
 	public ReturnFormat saveAbstractionQuery(@RequestBody AbstractionRequest abstrationReq) {
 
@@ -37,6 +42,12 @@ public class AbstractionController {
 	@DeleteMapping(value = "/deleteQueries")
 	public ReturnFormat deleteDashboard(@RequestBody AbstractionDeleteRequest abstractionReq) {
 		return abstrationSer.deleteAbstractionQuery(abstractionReq);
+	}
+	
+	@GetMapping(value = "/getQueries")
+	public @ResponseBody ReturnFormat getDashboardQuery(@RequestBody AbstractionRetrieveRequest abstractionReq) {
+
+		return abstrationRetSer.getAbstractionQuery(abstractionReq);
 	}
 
 }
